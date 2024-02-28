@@ -25,7 +25,7 @@ import { MaterialModule } from './material/material.module';
     BingoModule,
     BrowserAnimationsModule,
     MaterialModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore())
   ],
   providers: [],

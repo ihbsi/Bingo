@@ -23,6 +23,10 @@ export class HomeComponent implements OnInit {
   async getBingoCard() {
     this.dataBingo = [];
     let response = await this.bingoService.getBingoCard();
+    
+    if(response === undefined || response === null){
+      return;
+    }
 
     for (let info of response.docs) {
       let data: BingoCard = {
@@ -33,6 +37,7 @@ export class HomeComponent implements OnInit {
       }
       this.dataBingo.push(data);
     }
+
     this.sortList(this.dataBingo);
   }
 

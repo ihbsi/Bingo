@@ -1,5 +1,5 @@
 export const environment = {
-    firebase: {
+    firebaseConfig: {
         projectId: 'bingo-backend-4f1d5',
         appId: '1:123124647992:web:73e3d4a25ca45c3c3fbecd',
         storageBucket: 'bingo-backend-4f1d5.appspot.com',
