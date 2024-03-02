@@ -1,0 +1,43 @@
+@media (max-width: 510px) {
+    .mat-mdc-table {
+        max-height: 80vh;
+        width: 80vw;
+    }
+}
+
+@media (min-width: 511px) {
+    .mat-mdc-table {
+        height: 100%;
+        max-height: 84vh;
+        width: 60vw;
+    }
+    .mat-column-B{
+        height: 14vh;
+    }
+}
+
+.bingo-table {
+    position: relative;
+    top: 2vh;
+    display: flex;
+    justify-content: center;
+}
+
+.mdc-data-table__table {
+    min-width: 0%;
+}
+
+mat-header-cell {
+    font-style: bold;
+    color: #202a5e;
+    font-size: 2rem;
+    justify-content: center;
+    text-align: center;
+}
+
+mat-cell {
+    justify-content: center;
+    text-align: center;
+    color: #202a5e;
+    font-size: 0.8rem;
+}

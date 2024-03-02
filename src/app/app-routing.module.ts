@@ -5,7 +5,7 @@ import { HomeComponent } from './bingo/components/home/home.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   {
-    path: 'bingo',
+    path: 'card',
     loadChildren: () => import('./bingo/bingo.module').then(m => m.BingoModule)
   },
   {

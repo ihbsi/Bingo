@@ -1,6 +1,6 @@
 
 import { Injectable, inject } from '@angular/core';
-import { BingoCard } from '../../interfaces/bingo';
+import { BingoFirebase } from '../../interfaces/bingo';
 import { DocumentData, Firestore, QuerySnapshot, addDoc, collection, doc, getDocs, query, updateDoc } from '@angular/fire/firestore';
 
 const PATH = 'bingoData';
@@ -14,15 +14,15 @@ export class BingoService {
 
   constructor() { }
 
-  getBingoCard(): Promise<QuerySnapshot<DocumentData>> {
+  getBingoFirebase(): Promise<QuerySnapshot<DocumentData>> {
     return getDocs(query(this._bingoRef));
   }
 
-  addBingoCard(bingoCard: BingoCard) {
+  addBingoCardFirebase(bingoCard: BingoFirebase) {
     return addDoc(this._bingoRef, bingoCard);
   }
 
-  updateValueCard(bingoCard: BingoCard) {
+  updateCardFirebase(bingoCard: BingoFirebase) {
     let docToUpdate = doc(this._firestore, PATH, bingoCard.idFirebase);
     return updateDoc(docToUpdate, { ...bingoCard });
   }
