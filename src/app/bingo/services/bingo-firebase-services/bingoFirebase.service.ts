@@ -7,7 +7,7 @@ const PATH = 'bingoData';
 @Injectable({
   providedIn: 'root'
 })
-export class BingoService {
+export class BingoFirebaseService {
 
   private _firestore: Firestore = inject(Firestore);
   private _bingoRef = collection(this._firestore, PATH);

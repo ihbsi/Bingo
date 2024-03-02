@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BingoService } from './bingo.service';
+import { BingoFirebaseService } from './bingoFirebase.service';
 
 describe('BingoService', () => {
-  let service: BingoService;
+  let service: BingoFirebaseService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(BingoService);
+    service = TestBed.inject(BingoFirebaseService);
   });
 
   it('should be created', () => {

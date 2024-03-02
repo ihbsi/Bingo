@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UtilService } from '../../services/util-services/util.service';
 import { Router } from '@angular/router';
 import { BingoFirebase } from '../../interfaces/bingo';
-import { BingoService } from '../../services/bingo-services/bingo.service';
+import { BingoFirebaseService } from '../../services/bingo-firebase-services/bingoFirebase.service';
 import { BingoCard } from '../../interfaces/card';
 
 @Component({
@@ -19,7 +19,7 @@ export class CardComponent implements OnInit {
   bingoCard: BingoCard[] = [];
 
   constructor(
-    private bingoService: BingoService,
+    private bingoService: BingoFirebaseService,
     private utilservice: UtilService,
     private router: Router) {
   }
