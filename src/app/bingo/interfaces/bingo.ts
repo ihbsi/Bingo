@@ -5,3 +5,7 @@ export interface BingoFirebase {
     column: string,
     active: boolean
 }
+
+export interface BingoCardFirebase{
+    dataBingo: BingoFirebase[]
+}

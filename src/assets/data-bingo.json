@@ -3,151 +3,151 @@
         {
             "id": 1,
             "text": "Tu mamá te consintió (caricias, comida, palabras bonitas, etc.)",
-            "Column": "B",
+            "column": "B",
             "active": false
         },
         {
             "id": 2,
             "text": "Leer para viajar a otras vidas",
-            "Column": "I",
+            "column": "B",
             "active": false
         },
         {
             "id": 3,
             "text": "Josué o Sergio conversaron contigo",
-            "Column": "N",
+            "column": "B",
             "active": false
         },
         {
             "id": 4,
             "text": "Tu hermana bromeó/molestó a tu mamá",
-            "Column": "G",
+            "column": "B",
             "active": false
         },
         {
             "id": 5,
             "text": "Un perrito que no conoces se acercó a ti",
-            "Column": "O",
+            "column": "B",
             "active": false
         },
         {
             "id": 6,
             "text": "Hacer hamas con tu pareja",
-            "Column": "B",
+            "column": "I",
             "active": false
         },
         {
             "id": 7,
             "text": "Algún familiar (fuera de tu casa) te escribió",
-            "Column": "I",
+            "column": "I",
             "active": false
         },
         {
             "id": 8,
             "text": "Salir a cantar",
-            "Column": "N",
+            "column": "I",
             "active": false
         },
         {
             "id": 9,
             "text": "Meditar. Te ayudará a transitar y conectar con el universo",
-            "Column": "G",
+            "column": "I",
             "active": false
         },
         {
             "id": 10,
             "text": "Pasó algo chistoso en clase (cualquiera de las que tomas)",
-            "Column": "O",
+            "column": "I",
             "active": false
         },
         {
             "id": 11,
             "text": "Cambiarle el nombre a alguien durante 2 minutos",
-            "Column": "B",
+            "column": "N",
             "active": false
         },
         {
             "id": 12,
             "text": "Ganar una guerra de pulgares a tu pareja",
-            "Column": "I",
+            "column": "N",
             "active": false
         },
         {
             "id": 13,
             "text": "Un niño te hizo sentir ternura",
-            "Column": "N",
+            "column": "N",
             "active": false
         },
         {
             "id": 14,
             "text": "Ver una peli con tu pareja",
-            "Column": "G",
+            "column": "N",
             "active": false
         },
         {
             "id": 15,
             "text": "Escuchaste en la calle una canción que disfrutas mucho",
-            "Column": "O",
+            "column": "N",
             "active": false
         },
         {
             "id": 16,
             "text": "Ver la Luna",
-            "Column": "B",
+            "column": "G",
             "active": false
         },
         {
             "id": 17,
             "text": "Saltar lo más alto 10 veces seguidas",
-            "Column": "I",
+            "column": "G",
             "active": false
         },
         {
             "id": 18,
             "text": "Compartiste con tu familia una Salida",
-            "Column": "N",
+            "column": "G",
             "active": false
         },
         {
             "id": 19,
             "text": "Tu pareja te hizo reír fuerte",
-            "Column": "G",
+            "column": "G",
             "active": false
         },
         {
             "id": 20,
             "text": "Dar una voltereta o medialuna",
-            "Column": "O",
+            "column": "G",
             "active": false
         },
         {
             "id": 21,
             "text": "Decirle un cumplido a 3 personas (conocidas o desconocidas)",
-            "Column": "B",
+            "column": "O",
             "active": false
         },
         {
             "id": 22,
             "text": "Conectar con la magía del yoga",
-            "Column": "I",
+            "column": "O",
             "active": false
         },
         {
             "id": 23,
             "text": "Tocar la cabeza a 5 personas diferentes dentro de 30 minutos (no puedes decirles por qué)",
-            "Column": "N",
+            "column": "O",
             "active": false
         },
         {
             "id": 24,
             "text": "Tu pareja te preparó algo para desayunar/cenar",
-            "Column": "G",
+            "column": "O",
             "active": false
         },
         {
             "id": 25,
             "text": "Viste a alguien con alguna prenda de vestir color ROJO",
-            "Column": "O",
+            "column": "O",
             "active": false
         }
     ]
