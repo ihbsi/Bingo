@@ -1,37 +1,58 @@
-<div class="bingo-table">
-    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <!-- B Column -->
-        <ng-container matColumnDef="B">
-            <mat-header-cell *matHeaderCellDef> B </mat-header-cell>
-            <mat-cell *matCellDef="let CellBingo" (click)="changeState(CellBingo.BColumn)" > {{CellBingo.BColumn.text}}
-            </mat-cell>
-        </ng-container>
+<ng-container *ngIf="!isLoaded">
+    <div class="spinner">
+        <mat-spinner color="accent"></mat-spinner>
+    </div>
+</ng-container>
+<ng-container *ngIf="isLoaded">
+    <div class="bingo-table">
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8 card-table">
+            <!-- B Column -->
+            <ng-container matColumnDef="B">
+                <mat-header-cell *matHeaderCellDef> B </mat-header-cell>
+                <mat-cell *matCellDef="let CellBingo"
+                    [ngClass]="CellBingo.BColumn.active ? 'mat-cell-active' : 'mat-cell-inactive'"
+                    (click)="changeState(CellBingo.BColumn)"> {{CellBingo.BColumn.text}}
+                </mat-cell>
+            </ng-container>
 
-        <!-- I Column -->
-        <ng-container matColumnDef="I">
-            <mat-header-cell *matHeaderCellDef> I </mat-header-cell>
-            <mat-cell *matCellDef="let CellBingo" (click)="changeState(CellBingo.IColumn)"> {{CellBingo.IColumn.text}} </mat-cell>
-        </ng-container>
+            <!-- I Column -->
+            <ng-container matColumnDef="I">
+                <mat-header-cell *matHeaderCellDef> I </mat-header-cell>
+                <mat-cell *matCellDef="let CellBingo"
+                    [ngClass]="CellBingo.IColumn.active ? 'mat-cell-active' : 'mat-cell-inactive'"
+                    (click)="changeState(CellBingo.IColumn)"> {{CellBingo.IColumn.text}}
+                </mat-cell>
+            </ng-container>
 
-        <!-- N Column -->
-        <ng-container matColumnDef="N">
-            <mat-header-cell *matHeaderCellDef> N </mat-header-cell>
-            <mat-cell *matCellDef="let CellBingo" (click)="changeState(CellBingo.NColumn)"> {{CellBingo.NColumn.text}} </mat-cell>
-        </ng-container>
+            <!-- N Column -->
+            <ng-container matColumnDef="N">
+                <mat-header-cell *matHeaderCellDef> N </mat-header-cell>
+                <mat-cell *matCellDef="let CellBingo"
+                    [ngClass]="CellBingo.NColumn.active ? 'mat-cell-active' : 'mat-cell-inactive'"
+                    (click)="changeState(CellBingo.NColumn)"> {{CellBingo.NColumn.text}}
+                </mat-cell>
+            </ng-container>
 
-        <!-- G Column -->
-        <ng-container matColumnDef="G">
-            <mat-header-cell *matHeaderCellDef> G </mat-header-cell>
-            <mat-cell *matCellDef="let CellBingo" (click)="changeState(CellBingo.GColumn)"> {{CellBingo.GColumn.text}} </mat-cell>
-        </ng-container>
+            <!-- G Column -->
+            <ng-container matColumnDef="G">
+                <mat-header-cell *matHeaderCellDef> G </mat-header-cell>
+                <mat-cell *matCellDef="let CellBingo"
+                    [ngClass]="CellBingo.GColumn.active ? 'mat-cell-active' : 'mat-cell-inactive'"
+                    (click)="changeState(CellBingo.GColumn)"> {{CellBingo.GColumn.text}}
+                </mat-cell>
+            </ng-container>
 
-        <!-- O Column -->
-        <ng-container matColumnDef="O">
-            <mat-header-cell *matHeaderCellDef> O </mat-header-cell>
-            <mat-cell *matCellDef="let CellBingo" (click)="changeState(CellBingo.OColumn)"> {{CellBingo.OColumn.text}} </mat-cell>
-        </ng-container>
+            <!-- O Column -->
+            <ng-container matColumnDef="O">
+                <mat-header-cell *matHeaderCellDef> O </mat-header-cell>
+                <mat-cell *matCellDef="let CellBingo"
+                    [ngClass]="CellBingo.OColumn.active ? 'mat-cell-active' : 'mat-cell-inactive'"
+                    (click)="changeState(CellBingo.OColumn)"> {{CellBingo.OColumn.text}}
+                </mat-cell>
+            </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="header-column"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-</div>
+            <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="header-column"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
+</ng-container>

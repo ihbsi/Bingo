@@ -19,6 +19,7 @@ export class CardComponent implements OnInit {
   displayedColumns: string[] = ['B', 'I', 'N', 'G', 'O'];
   bingoCard: BingoCard[] = [];
   dataSource: BingoCard[] = [];
+  isLoaded: boolean = false;
 
   constructor(
     private bingoFirebaseService: BingoFirebaseService,
@@ -28,10 +29,11 @@ export class CardComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.goToHome();
+    //this.goToHome();
     await this.getBingoFirebase();
     this.FillBingoCard();
     this.dataSource = this.bingoCard;
+    this.isLoaded = true;
   }
 
   async getBingoFirebase() {
@@ -70,19 +72,6 @@ export class CardComponent implements OnInit {
     await this.getBingoFirebase();
   }
 
-  async updateCard() {
-    let valueBingoCard = this.dataBingo[0];
-    await this.bingoFirebaseService.updateCardFirebase({
-      idFirebase: valueBingoCard.idFirebase,
-      id: valueBingoCard.id,
-      text: valueBingoCard.text,
-      column: valueBingoCard.column,
-      active: !valueBingoCard.active
-    });
-
-    this.getBingoFirebase();
-  }
-
   FillBingoCard() {
     for (let index = 0; index < (this.dataBingo.length / 5); index++) {
       let cellBingo: BingoCard = {
@@ -97,7 +86,8 @@ export class CardComponent implements OnInit {
   }
 
   changeState(cellBingo: BingoFirebase) {
-
+    cellBingo.active = !cellBingo.active;
+    this.bingoFirebaseService.updateCardFirebase(cellBingo);
   }
 
   sortList(list: Array<any>) {

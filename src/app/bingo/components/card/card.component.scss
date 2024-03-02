@@ -1,6 +1,7 @@
 @media (max-width: 510px) {
     .mat-mdc-table {
         max-height: 80vh;
+        overflow: auto;
         width: 80vw;
     }
 }
@@ -9,10 +10,11 @@
     .mat-mdc-table {
         height: 100%;
         max-height: 84vh;
-        width: 60vw;
+        overflow: auto;
+        width: 75vw;
     }
-    .mat-column-B{
-        height: 14vh;
+    .mat-column-B {
+        min-height: 12.5vh;
     }
 }
 
@@ -21,6 +23,10 @@
     top: 2vh;
     display: flex;
     justify-content: center;
+}
+
+.card-table {
+    background-color: #808dd3;
 }
 
 .mdc-data-table__table {
@@ -38,6 +44,34 @@ mat-header-cell {
 mat-cell {
     justify-content: center;
     text-align: center;
-    color: #202a5e;
     font-size: 0.8rem;
+}
+
+mat-cell:hover {
+    cursor: pointer;
+}
+
+mat-header-cell:hover {
+    cursor: default;
+}
+
+.mat-cell-active {
+    color: #352c02;
+    background-color: #e1d8aa;
+}
+
+.mat-cell-inactive {
+    color: #020d45;
+    background-color: #aab3e1;
+}
+
+.spinner {
+    background-color: #020d45;
+    height: 100%;
+    width: 100%;
+    color: #ff4081;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
 }
