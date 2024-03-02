@@ -3,7 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './bingo/components/home/home.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent}
+  { path: '', component: HomeComponent },
+  {
+    path: 'bingo',
+    loadChildren: () => import('./bingo/bingo.module').then(m => m.BingoModule)
+  },
+  {
+    path: '**',
+    redirectTo: ''
+  }
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
 
 import { Injectable, inject } from '@angular/core';
-import { BingoCard } from '../interfaces/bingo';
+import { BingoCard } from '../../interfaces/bingo';
 import { DocumentData, Firestore, QuerySnapshot, addDoc, collection, doc, getDocs, query, updateDoc } from '@angular/fire/firestore';
 
 const PATH = 'bingoData';

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BingoCard } from '../../interfaces/bingo';
-import { BingoService } from '../../services/bingo.service';
+import { BingoService } from '../../services/bingo-services/bingo.service';
+import { Router } from '@angular/router';
+import { UtilService } from '../../services/util-services/util.service';
 
 @Component({
   selector: 'app-home',
@@ -12,19 +14,24 @@ export class HomeComponent implements OnInit {
   message: string = 'Eres mi Lunita consentida';
   srcImg: string = 'https://cdn.pixabay.com/photo/2023/08/12/13/43/moon-8185650_1280.png';
   dataBingo: BingoCard[] = [];
+  hiddenButton: boolean = true;
 
-  constructor(private bingoService: BingoService) {
+  constructor(
+    private bingoService: BingoService,
+    private utilservice: UtilService,
+    private router: Router) {
   }
 
   async ngOnInit(): Promise<void> {
     await this.getBingoCard();
+    this.hiddenButton = !this.utilservice.isHappyDate();
   }
 
   async getBingoCard() {
     this.dataBingo = [];
     let response = await this.bingoService.getBingoCard();
-    
-    if(response === undefined || response === null){
+
+    if (response === undefined || response === null) {
       return;
     }
 
@@ -66,6 +73,13 @@ export class HomeComponent implements OnInit {
   }
 
   sortList(list: Array<any>) {
-    list.sort((x, y) => (x.id > y.id) ? 1 : ((y.id > x.id) ? -1 : 0));
+    list.sort((x, y) => {
+      if (x.id > y.id) { return 1; }
+      return ((y.id > x.id) ? -1 : 0)
+    });
+  }
+
+  goToBingo() {
+    this.router.navigateByUrl('bingo');
   }
 }
