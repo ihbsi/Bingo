@@ -29,7 +29,7 @@ export class CardComponent implements OnInit {
   }
 
   async ngOnInit() {
-    //this.goToHome();
+    this.goToHome();
     await this.getBingoFirebase();
     this.FillBingoCard();
     this.dataSource = this.bingoCard;

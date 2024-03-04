@@ -2,8 +2,9 @@
 import { Injectable, inject } from '@angular/core';
 import { BingoFirebase } from '../../interfaces/bingo';
 import { DocumentData, Firestore, QuerySnapshot, addDoc, collection, doc, getDocs, query, updateDoc } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
 
-const PATH = 'bingoData';
+const PATH = environment.pathDataBingoCollectFirebase;
 @Injectable({
   providedIn: 'root'
 })

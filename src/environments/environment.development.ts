@@ -7,5 +7,6 @@ export const environment = {
         authDomain: 'bingo-backend-4f1d5.firebaseapp.com',
         messagingSenderId: '123124647992',
     },
+    pathDataBingoCollectFirebase: 'bingoDataDev',
     production: false
 }
