@@ -6,6 +6,7 @@ import { BingoFirebaseService } from '../../services/bingo-firebase-services/bin
 import { lastValueFrom } from 'rxjs';
 import { BingoLocalService } from '../../services/bingo-local-services/bingoLocal.service';
 import { BingoCard } from '../../interfaces/card';
+import { AlertTypes } from 'src/app/bingo/enums/enums';
 
 @Component({
   selector: 'app-card',
@@ -20,6 +21,8 @@ export class CardComponent implements OnInit {
   bingoCard: BingoCard[] = [];
   dataSource: BingoCard[] = [];
   isLoaded: boolean = false;
+  maxRows: number = 5;
+  maxColumns: number = 5;
 
   constructor(
     private bingoFirebaseService: BingoFirebaseService,
@@ -73,13 +76,13 @@ export class CardComponent implements OnInit {
   }
 
   FillBingoCard() {
-    for (let index = 0; index < (this.dataBingo.length / 5); index++) {
+    for (let index = 0; index < (this.dataBingo.length / this.maxRows); index++) {
       let cellBingo: BingoCard = {
         BColumn: this.dataBingo[index],
-        IColumn: this.dataBingo[index + 5],
-        NColumn: this.dataBingo[index + 10],
-        GColumn: this.dataBingo[index + 15],
-        OColumn: this.dataBingo[index + 20],
+        IColumn: this.dataBingo[index + this.maxRows],
+        NColumn: this.dataBingo[index + this.maxRows * 2],
+        GColumn: this.dataBingo[index + this.maxRows * 3],
+        OColumn: this.dataBingo[index + this.maxRows * 4],
       }
       this.bingoCard.push(cellBingo);
     }
@@ -88,6 +91,107 @@ export class CardComponent implements OnInit {
   changeState(cellBingo: BingoFirebase) {
     cellBingo.active = !cellBingo.active;
     this.bingoFirebaseService.updateCardFirebase(cellBingo);
+    this.validateRewards(cellBingo);
+  }
+
+  validateRewards(cellBingo: BingoFirebase) {
+    this.validateRowReward(cellBingo);
+    this.validateColumnReward(cellBingo);
+    this.validateFirstDiagonalReward(cellBingo);
+    this.validateSecondDiagonalReward(cellBingo);
+    this.validateBingoCardReward();
+  }
+
+  validateRowReward(cellBingo: BingoFirebase) {
+    let numRow: number = this.getCellRow(cellBingo);
+    let filterRowActive = this.dataBingo.filter((cell) => {
+      return cell.active === true && numRow === this.getCellRow(cell)
+    })
+
+    if (filterRowActive.length === this.maxRows) {
+      console.log(`logrado: fila ${numRow}`);
+    }
+  }
+
+  validateColumnReward(cellBingo: BingoFirebase) {
+    let filterColumnActive = this.dataBingo.filter((cell) => {
+      return cell.active === true && cellBingo.column === cell.column
+    })
+
+    if (filterColumnActive.length === this.maxColumns) {
+      console.log(`logrado: columna "${cellBingo.column}"`);
+    }
+  }
+
+  validateFirstDiagonalReward(cellBingo: BingoFirebase) {
+    let maxDiagonal: number = this.maxRows < this.maxColumns ? this.maxRows : this.maxColumns;
+
+    if (!this.isFirstDiagonal(cellBingo)) {
+      return;
+    }
+
+    let filterFirstDiagonalActive = this.dataBingo.filter((cell) => {
+      return cell.active === true && this.isFirstDiagonal(cell)
+    })
+
+    if (filterFirstDiagonalActive.length === maxDiagonal) {
+      console.log('logrado: Diagonal \\');
+    }
+  }
+
+  validateSecondDiagonalReward(cellBingo: BingoFirebase) {
+    let maxDiagonal: number = this.maxRows < this.maxColumns ? this.maxRows : this.maxColumns;
+
+    if (!this.isSecondDiagonal(cellBingo)) {
+      return;
+    }
+
+    let filterSecondDiagonalActive = this.dataBingo.filter((cell) => {
+      return cell.active === true && this.isSecondDiagonal(cell)
+    })
+
+    if (filterSecondDiagonalActive.length === maxDiagonal) {
+      console.log('logrado: Diagonal /');
+    }
+  }
+
+  validateBingoCardReward() {
+    let cellBingoActive = this.dataBingo.filter((cell) => {
+      return cell.active === true
+    })
+
+    if (cellBingoActive.length === this.dataBingo.length) {
+      this.utilservice.Alert(
+        '¡<b>Bingo</b> Completado!',
+        'Recompensas',
+        AlertTypes.Success
+      );
+    }
+  }
+
+  getCellRow(cellBingo: BingoFirebase): number {
+    switch (cellBingo.column) {
+      case 'B':
+        return cellBingo.id;
+      case 'I':
+        return cellBingo.id - this.maxRows;
+      case 'N':
+        return cellBingo.id - (this.maxRows * 2);
+      case 'G':
+        return cellBingo.id - (this.maxRows * 3);
+      case 'O':
+        return cellBingo.id - (this.maxRows * 4);
+      default:
+        return 0;
+    }
+  }
+
+  isFirstDiagonal(cellBingo: BingoFirebase): boolean {
+    return (this.displayedColumns.indexOf(cellBingo.column) + 1) === this.getCellRow(cellBingo);
+  }
+
+  isSecondDiagonal(cellBingo: BingoFirebase): boolean {
+    return this.displayedColumns[this.displayedColumns.length - this.getCellRow(cellBingo)] === cellBingo.column;
   }
 
   sortList(list: Array<any>) {

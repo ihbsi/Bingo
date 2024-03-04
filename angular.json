@@ -17,6 +17,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "lodash"
+            ],
             "outputPath": "dist/bingo",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -54,10 +57,10 @@
             "development": {
               "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
+              "vendorChunk": false,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true,
+              "namedChunks": false,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -70,6 +73,11 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "allowedHosts": [
+              "all"
+            ]
+          },
           "configurations": {
             "production": {
               "browserTarget": "Bingo:build:production"
