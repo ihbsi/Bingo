@@ -8,5 +8,7 @@ export const environment = {
     messagingSenderId: '123124647992',
   },
   pathDataBingoCollectFirebase: 'bingoData',
+  htmlRewardUlMessage: '<ul style="text-align: left;">[List]</ul>',
+  htmlRewardListMessage: '<li><b>[Concept]</b> [Value] => <i>[Reward]</i></li>',
   production: true
 }

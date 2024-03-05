@@ -6,7 +6,8 @@ import { BingoFirebaseService } from '../../services/bingo-firebase-services/bin
 import { lastValueFrom } from 'rxjs';
 import { BingoLocalService } from '../../services/bingo-local-services/bingoLocal.service';
 import { BingoCard } from '../../interfaces/card';
-import { AlertTypes } from 'src/app/bingo/enums/enums';
+import { AlertTypes, RewardType } from 'src/app/bingo/enums/enums';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-card',
@@ -23,6 +24,7 @@ export class CardComponent implements OnInit {
   isLoaded: boolean = false;
   maxRows: number = 5;
   maxColumns: number = 5;
+  rewardsList: string[] = [];
 
   constructor(
     private bingoFirebaseService: BingoFirebaseService,
@@ -89,9 +91,11 @@ export class CardComponent implements OnInit {
   }
 
   changeState(cellBingo: BingoFirebase) {
+    this.rewardsList = [];
     cellBingo.active = !cellBingo.active;
     this.bingoFirebaseService.updateCardFirebase(cellBingo);
     this.validateRewards(cellBingo);
+    this.showRewards();
   }
 
   validateRewards(cellBingo: BingoFirebase) {
@@ -109,7 +113,11 @@ export class CardComponent implements OnInit {
     })
 
     if (filterRowActive.length === this.maxRows) {
-      console.log(`logrado: fila ${numRow}`);
+      let message = environment.htmlRewardListMessage
+        .replace('[Concept]', 'Fila')
+        .replace('[Value]', numRow.toString())
+        .replace('[Reward]', RewardType.Row);
+      this.rewardsList.push(message);
     }
   }
 
@@ -119,7 +127,11 @@ export class CardComponent implements OnInit {
     })
 
     if (filterColumnActive.length === this.maxColumns) {
-      console.log(`logrado: columna "${cellBingo.column}"`);
+      let message = environment.htmlRewardListMessage
+        .replace('[Concept]', 'Columna')
+        .replace('[Value]', cellBingo.column)
+        .replace('[Reward]', RewardType.Column);
+      this.rewardsList.push(message);
     }
   }
 
@@ -135,7 +147,11 @@ export class CardComponent implements OnInit {
     })
 
     if (filterFirstDiagonalActive.length === maxDiagonal) {
-      console.log('logrado: Diagonal \\');
+      let message = environment.htmlRewardListMessage
+        .replace('[Concept]', 'Diagonal')
+        .replace('[Value]', '\\')
+        .replace('[Reward]', RewardType.FirstDiagonal);
+      this.rewardsList.push(message);
     }
   }
 
@@ -151,7 +167,11 @@ export class CardComponent implements OnInit {
     })
 
     if (filterSecondDiagonalActive.length === maxDiagonal) {
-      console.log('logrado: Diagonal /');
+      let message = environment.htmlRewardListMessage
+        .replace('[Concept]', 'Diagonal')
+        .replace('[Value]', '/')
+        .replace('[Reward]', RewardType.SecondDiagonal);
+      this.rewardsList.push(message);
     }
   }
 
@@ -161,12 +181,25 @@ export class CardComponent implements OnInit {
     })
 
     if (cellBingoActive.length === this.dataBingo.length) {
-      this.utilservice.Alert(
-        '¡<b>Bingo</b> Completado!',
-        'Recompensas',
-        AlertTypes.Success
-      );
+      let message = environment.htmlRewardListMessage
+        .replace('[Concept]', 'Bingo')
+        .replace('[Value]', 'Completado')
+        .replace('[Reward]', RewardType.Bingo);
+      this.rewardsList.push(message);
     }
+  }
+
+  showRewards() {
+    let rewardsMessage: string = '';
+    if (this.rewardsList.length < 1) {
+      return;
+    }
+    rewardsMessage = environment.htmlRewardUlMessage.replace('[List]', this.rewardsList.join(' '));
+    this.utilservice.Alert(
+      rewardsMessage,
+      '¡Ganaste!',
+      AlertTypes.Success
+    );
   }
 
   getCellRow(cellBingo: BingoFirebase): number {
