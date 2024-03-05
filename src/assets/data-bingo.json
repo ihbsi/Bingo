@@ -1,0 +1,154 @@
+{
+    "dataBingo": [
+        {
+            "id": 1,
+            "text": "Saltar lo más alto 10 veces seguidas",
+            "column": "B",
+            "active": false
+        },
+        {
+            "id": 2,
+            "text": "Decirle un cumplido a 3 personas (conocidas o desconocidas)",
+            "column": "B",
+            "active": false
+        },
+        {
+            "id": 3,
+            "text": "Dar una voltereta o medialuna",
+            "column": "B",
+            "active": false
+        },
+        {
+            "id": 4,
+            "text": "Tocar la cabeza a 5 personas diferentes dentro de 30 minutos (no puedes decirles por qué)",
+            "column": "B",
+            "active": false
+        },
+        {
+            "id": 5,
+            "text": "Cambiarle el nombre a alguien durante 2 minutos",
+            "column": "B",
+            "active": false
+        },
+        {
+            "id": 6,
+            "text": "Ver la Luna",
+            "column": "I",
+            "active": false
+        },
+        {
+            "id": 7,
+            "text": "Salir a cantar",
+            "column": "I",
+            "active": false
+        },
+        {
+            "id": 8,
+            "text": "Conectar con la magía del yoga",
+            "column": "I",
+            "active": false
+        },
+        {
+            "id": 9,
+            "text": "Leer para viajar a otras vidas",
+            "column": "I",
+            "active": false
+        },
+        {
+            "id": 10,
+            "text": "Meditar. Te ayudará a transitar y conectar con el universo",
+            "column": "I",
+            "active": false
+        },
+        {
+            "id": 11,
+            "text": "Tu pareja te hizo reír fuerte",
+            "column": "N",
+            "active": false
+        },
+        {
+            "id": 12,
+            "text": "Ver una peli con tu pareja",
+            "column": "N",
+            "active": false
+        },
+        {
+            "id": 13,
+            "text": "Tu pareja te preparó algo para desayunar/cenar",
+            "column": "N",
+            "active": false
+        },
+        {
+            "id": 14,
+            "text": "Ganar una guerra de pulgares a tu pareja",
+            "column": "N",
+            "active": false
+        },
+        {
+            "id": 15,
+            "text": "Hacer hamas con tu pareja",
+            "column": "N",
+            "active": false
+        },
+        {
+            "id": 16,
+            "text": "Tu hermana bromeó/molestó a tu mamá",
+            "column": "G",
+            "active": false
+        },
+        {
+            "id": 17,
+            "text": "Tu mamá te consintió (caricias, comida, palabras bonitas, etc.)",
+            "column": "G",
+            "active": false
+        },
+        {
+            "id": 18,
+            "text": "Josué o Sergio conversaron contigo",
+            "column": "G",
+            "active": false
+        },
+        {
+            "id": 19,
+            "text": "Compartiste con tu familia una Salida",
+            "column": "G",
+            "active": false
+        },
+        {
+            "id": 20,
+            "text": "Algún familiar (fuera de tu casa) te escribió",
+            "column": "G",
+            "active": false
+        },
+        {
+            "id": 21,
+            "text": "Un niño te hizo sentir ternura",
+            "column": "O",
+            "active": false
+        },
+        {
+            "id": 22,
+            "text": "Viste a alguien con alguna prenda de vestir color ROJO",
+            "column": "O",
+            "active": false
+        },
+        {
+            "id": 23,
+            "text": "Un perrito que no conoces se acercó a ti",
+            "column": "O",
+            "active": false
+        },
+        {
+            "id": 24,
+            "text": "Escuchaste en la calle una canción que disfrutas mucho",
+            "column": "O",
+            "active": false
+        },
+        {
+            "id": 25,
+            "text": "Pasó algo chistoso en clase (cualquiera de las que tomas)",
+            "column": "O",
+            "active": false
+        }
+    ]
+}

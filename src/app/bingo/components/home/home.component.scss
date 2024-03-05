@@ -1,0 +1,20 @@
+.card-home {
+    display: flex;
+    justify-content: center;
+    mat-card {
+        background-color: #aab3e1;
+        top:2vh;
+    }
+}
+
+.card-header-home {
+    background-color: #808dd3;
+}
+
+.btn-happy {
+    background-color: #808dd3;
+    button {
+        font-size: 1.5rem;
+        height: 4rem;
+    }
+}
