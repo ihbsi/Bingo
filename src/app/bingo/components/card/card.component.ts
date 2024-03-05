@@ -188,7 +188,7 @@ export class CardComponent implements OnInit {
     if (this.isValidadSecretPattern(secretPattern, cellBingo)) {
       let message = environment.htmlRewardListMessage
         .replace('[Concept]', 'Patrón')
-        .replace('[Value]', 'secreto')
+        .replace('[Value]', 'secreto J')
         .replace('[Reward]', RewardType.SecretJPattern);
       this.rewardsList.push(message);
     }
@@ -200,7 +200,7 @@ export class CardComponent implements OnInit {
     if (this.isValidadSecretPattern(secretPattern, cellBingo)) {
       let message = environment.htmlRewardListMessage
         .replace('[Concept]', 'Patrón')
-        .replace('[Value]', 'secreto')
+        .replace('[Value]', 'secreto H')
         .replace('[Reward]', RewardType.SecretHPattern);
       this.rewardsList.push(message);
     }

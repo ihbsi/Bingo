@@ -7,13 +7,13 @@ export class AlertTypes {
 }
 
 export class RewardType {
-  public static readonly Row: any = 'Premio fila';
-  public static readonly Column: any = 'Premio Columna';
-  public static readonly FirstDiagonal: any = 'Premio Diagonal \\';
-  public static readonly SecondDiagonal: any = 'Premio Diagonal /';
-  public static readonly Bingo: any = 'Premio Bingo';
-  public static readonly SecretJPattern: any = 'Premio patrón secreto';
-  public static readonly SecretHPattern: any = 'Premio patrón secreto';
+  public static readonly Row: any = 'Pirámide de gomitas';
+  public static readonly Column: any = 'Nutellita';
+  public static readonly FirstDiagonal: any = 'Beso especial';
+  public static readonly SecondDiagonal: any = '3 Besos 404';
+  public static readonly Bingo: any = 'Invitación a cenar (Tú elijes dónde)';
+  public static readonly SecretJPattern: any = 'Pingüinos';
+  public static readonly SecretHPattern: any = 'Pizza';
 }
 
 export class SecretPattern {
