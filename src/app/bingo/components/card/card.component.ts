@@ -293,4 +293,8 @@ export class CardComponent implements OnInit {
       this.router.navigateByUrl('');
     }
   }
+
+  backPage() {
+    this.router.navigateByUrl('');
+  }
 }

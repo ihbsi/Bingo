@@ -4,6 +4,12 @@
     </div>
 </ng-container>
 <ng-container *ngIf="isLoaded">
+    <div class="btn-back" (click)="backPage()">
+        <button mat-raised-button color="primary">
+            <span class="material-symbols-outlined"> arrow_back </span>
+        </button>
+    </div>
+
     <div class="bingo-table">
         <mat-table [dataSource]="dataSource" class="mat-elevation-z8 card-table">
             <!-- B Column -->
