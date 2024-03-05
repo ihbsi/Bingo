@@ -6,8 +6,9 @@ import { BingoFirebaseService } from '../../services/bingo-firebase-services/bin
 import { lastValueFrom } from 'rxjs';
 import { BingoLocalService } from '../../services/bingo-local-services/bingoLocal.service';
 import { BingoCard } from '../../interfaces/card';
-import { AlertTypes, RewardType } from 'src/app/bingo/enums/enums';
+import { AlertTypes, RewardType, SecretPattern } from 'src/app/bingo/enums/enums';
 import { environment } from 'src/environments/environment';
+import { Pattern } from '../../interfaces/pattern';
 
 @Component({
   selector: 'app-card',
@@ -99,10 +100,16 @@ export class CardComponent implements OnInit {
   }
 
   validateRewards(cellBingo: BingoFirebase) {
+    if (!cellBingo.active) {
+      return;
+    }
+
     this.validateRowReward(cellBingo);
     this.validateColumnReward(cellBingo);
     this.validateFirstDiagonalReward(cellBingo);
     this.validateSecondDiagonalReward(cellBingo);
+    this.validateSecretJReward(cellBingo);
+    this.validateSecretHReward(cellBingo);
     this.validateBingoCardReward();
   }
 
@@ -173,6 +180,53 @@ export class CardComponent implements OnInit {
         .replace('[Reward]', RewardType.SecondDiagonal);
       this.rewardsList.push(message);
     }
+  }
+
+  validateSecretJReward(cellBingo: BingoFirebase) {
+    let secretPattern: Pattern[] = JSON.parse(SecretPattern.JPattern);
+
+    if (this.isValidadSecretPattern(secretPattern, cellBingo)) {
+      let message = environment.htmlRewardListMessage
+        .replace('[Concept]', 'Patrón')
+        .replace('[Value]', 'secreto')
+        .replace('[Reward]', RewardType.SecretJPattern);
+      this.rewardsList.push(message);
+    }
+  }
+
+  validateSecretHReward(cellBingo: BingoFirebase) {
+    let secretPattern: Pattern[] = JSON.parse(SecretPattern.HPattern);
+
+    if (this.isValidadSecretPattern(secretPattern, cellBingo)) {
+      let message = environment.htmlRewardListMessage
+        .replace('[Concept]', 'Patrón')
+        .replace('[Value]', 'secreto')
+        .replace('[Reward]', RewardType.SecretHPattern);
+      this.rewardsList.push(message);
+    }
+  }
+
+  isValidadSecretPattern(secretPattern: Pattern[], cellBingo: BingoFirebase): boolean {
+    let cellIntoSecret: any = secretPattern.filter((secretCell) => {
+      return secretCell.col === cellBingo.column
+        && secretCell.row === this.getCellRow(cellBingo);
+    })
+
+    if (cellIntoSecret.length < 1) {
+      return false;
+    }
+
+    for (let secretCell of secretPattern) {
+      cellIntoSecret = this.dataBingo.filter((cell) => {
+        return secretCell.col === cell.column
+          && secretCell.row === this.getCellRow(cell)
+          && cell.active
+      })
+      if (cellIntoSecret.length < 1) {
+        return false;
+      }
+    }
+    return true;
   }
 
   validateBingoCardReward() {
