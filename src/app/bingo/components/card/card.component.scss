@@ -18,6 +18,15 @@
     }
 }
 
+.btn-back {
+    display: flex;
+    justify-content: left;
+    margin: 1rem;
+    button {
+        align-items: end;
+    }
+}
+
 .bingo-table {
     position: relative;
     top: 2vh;
