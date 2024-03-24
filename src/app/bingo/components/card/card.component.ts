@@ -35,7 +35,7 @@ export class CardComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.goToHome();
+    this.validateGoToHome();
     await this.getBingoFirebase();
     this.FillBingoCard();
     this.dataSource = this.bingoCard;
@@ -78,17 +78,31 @@ export class CardComponent implements OnInit {
     await this.getBingoFirebase();
   }
 
-  FillBingoCard() {
-    for (let index = 0; index < (this.dataBingo.length / this.maxRows); index++) {
-      let cellBingo: BingoCard = {
-        BColumn: this.dataBingo[index],
-        IColumn: this.dataBingo[index + this.maxRows],
-        NColumn: this.dataBingo[index + this.maxRows * 2],
-        GColumn: this.dataBingo[index + this.maxRows * 3],
-        OColumn: this.dataBingo[index + this.maxRows * 4],
+  async FillBingoCard() {
+    try {
+      for (let index = 1; index <= (this.dataBingo.length / this.maxRows); index++) {    
+        let cellBingo: BingoCard = {
+          BColumn: this.fillCellBingo(index),
+          IColumn: this.fillCellBingo(index + this.maxRows),
+          NColumn: this.fillCellBingo(index + this.maxRows * 2),
+          GColumn: this.fillCellBingo(index + this.maxRows * 3),
+          OColumn: this.fillCellBingo(index + this.maxRows * 4),
+        }
+        this.bingoCard.push(cellBingo);
       }
-      this.bingoCard.push(cellBingo);
+    } catch (error) {
+      console.log(error);
+      this.utilservice.Alert('Comunícate con tu programador más cercano.', 'Algo salió mal :c', AlertTypes.Error);
+      this.goToHome();
     }
+  }
+
+  fillCellBingo(id: number): BingoFirebase {
+    let CellBingo = this.dataBingo.filter((card) => card.id === (id))
+    if (CellBingo === undefined || CellBingo.length === 0) {
+      throw new Error('Ocurrió error: fallo con el id: ' + id);
+    }
+    return CellBingo[0];
   }
 
   changeState(cellBingo: BingoFirebase) {
@@ -288,13 +302,17 @@ export class CardComponent implements OnInit {
     });
   }
 
-  goToHome() {
+  validateGoToHome() {
     if (!this.utilservice.isHappyDate()) {
-      this.router.navigateByUrl('');
+      this.goToHome();
     }
   }
 
   backPage() {
+    this.goToHome();
+  }
+
+  goToHome() {
     this.router.navigateByUrl('');
   }
 }
